@@ -11,7 +11,14 @@ import { PhotoDownloadController } from './photo-download/photo-download.control
 import { PhotoDownloadModule } from './photo-download/photo-download.module';
 
 @Module({
-  imports: [CameraModule, PhotoUploadModule, CalculateModule, PhotoEditModule, VerificationModule, PhotoDownloadModule],
+  imports: [
+    CameraModule,
+    PhotoUploadModule,
+    CalculateModule,
+    PhotoEditModule,
+    VerificationModule,
+    PhotoDownloadModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

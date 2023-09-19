@@ -9,7 +9,7 @@ export class AppController {
   @Get()
   @ApiResponse({
     status: 200,
-    description: "Default API for nest js",
+    description: 'Default API for nest js',
     type: String,
   })
   getHello(): string {
