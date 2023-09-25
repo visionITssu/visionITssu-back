@@ -6,9 +6,9 @@ import { PhotoUploadModule } from './photo-upload/photo-upload.module';
 import { CalculateModule } from './calculate/calculate.module';
 import { PhotoEditModule } from './photo-edit/photo-edit.module';
 import { VerificationModule } from './verification/verification.module';
-import { PhotoDownloadService } from './photo-download/photo-download.service';
-import { PhotoDownloadController } from './photo-download/photo-download.controller';
 import { PhotoDownloadModule } from './photo-download/photo-download.module';
+import { ExampleModule } from './example/example.module';
+
 
 @Module({
   imports: [
@@ -18,6 +18,7 @@ import { PhotoDownloadModule } from './photo-download/photo-download.module';
     PhotoEditModule,
     VerificationModule,
     PhotoDownloadModule,
+    ExampleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
