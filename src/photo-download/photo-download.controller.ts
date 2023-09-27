@@ -11,7 +11,7 @@ export class PhotoDownloadController {
   @Get(':filename') // Correctly define the route parameter
   async downloadFile(@Param('filename') filename: string, @Res() res: Response) {
 
-    const filePath = path.join(__dirname, '../../../dist', 'uploads', filename);
+    const filePath = path.join(process.cwd(), 'src', 'uploads', filename);
    
     // Check if the file exists
     if (!fs.existsSync(filePath)) {
