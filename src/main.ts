@@ -3,13 +3,11 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
-import { Logger } from '@nestjs/common';
 import { Express } from 'express';
 import * as path from 'path'; // Import the path module
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  const port = process.env.PORT || 3000;
 
   app.enableCors({
     origin: '*',
@@ -26,9 +24,6 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
 
-  await app.listen(port, () => {
-    const logger = new Logger('Bootstrap'); // Bootstrap은 로그의 컨텍스트입니다. 원하는 대로 변경 가능
-    logger.log(`Server is running on http://localhost:${port}`);
-  });
+  await app.listen(3000, '0.0.0.0', () => {});
 }
 bootstrap();
