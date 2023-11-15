@@ -8,6 +8,7 @@ import { PhotoEditModule } from './photo-edit/photo-edit.module';
 import { VerificationModule } from './verification/verification.module';
 import { PhotoDownloadModule } from './photo-download/photo-download.module';
 import { ExampleModule } from './example/example.module';
+import { SocketModule } from './socket/socket.module';
 
 
 @Module({
@@ -19,8 +20,9 @@ import { ExampleModule } from './example/example.module';
     VerificationModule,
     PhotoDownloadModule,
     ExampleModule,
+    SocketModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
