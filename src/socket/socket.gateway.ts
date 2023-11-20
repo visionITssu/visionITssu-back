@@ -20,7 +20,7 @@ export class SocketGateway {
     handleStream(client: Socket, imageBlob: Buffer): void {
         // imageBlob의 크기를 바이트 단위로 확인
         const sizeInBytes = Buffer.byteLength(imageBlob);
-        console.log(`Received imageBlob size: ${sizeInBytes} bytes`);
+        //console.log(`imageBlob Receivesize: ${sizeInBytes} bytes`);
 
         if (imageBlob) {
             let options = {
@@ -29,7 +29,7 @@ export class SocketGateway {
             };
 
             // Python 스크립트 실행
-            PythonShell.run('Demo/Demo.py', options).then(messages => console.log(messages))
+            PythonShell.run('Demo/test2.py', options).then(messages => console.log(messages))
         }
     }
 
