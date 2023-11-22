@@ -1,5 +1,7 @@
 # External Libraries
 Demo/dlib-19.24
+*.pt
+
 
 # Logs
 logs

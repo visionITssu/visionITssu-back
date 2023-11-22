@@ -29,7 +29,7 @@ export class SocketGateway {
             };
 
             // Python 스크립트 실행
-            PythonShell.run('Demo/test2.py', options).then(messages => console.log(messages))
+            PythonShell.run('Demo/test.py', options).then(messages => console.log(messages))
         }
     }
 
