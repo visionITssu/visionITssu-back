@@ -11,7 +11,7 @@ import * as path from 'path'; // Import the path module
 async function bootstrap() {
 
   const httpsOptions = {
-    key: fs.readFileSync('/etc/letsencrypt/live/devy.me/prikey.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/devy.me/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/devy.me/cert.pem'),
   };
 
