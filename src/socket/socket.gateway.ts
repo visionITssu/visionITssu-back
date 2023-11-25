@@ -30,7 +30,7 @@ export class SocketGateway {
             };
 
             // Python 스크립트 실행
-            PythonShell.run('Demo/test.py', options).then(messages => console.log(messages))
+            // PythonShell.run('Demo/test.py', options).then(messages => console.log(messages))
 
             PythonShell.run('Demo/test.py', options).then(message => {
                 const output = JSON.parse(message[0]); // Python 출력 파싱
