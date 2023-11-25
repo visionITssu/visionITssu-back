@@ -14,6 +14,7 @@ import { PythonShell } from 'python-shell';
 export class SocketGateway {
     @WebSocketServer()
     server: Server;
+    dataList: any;
 
 
     @SubscribeMessage('stream')
@@ -30,11 +31,15 @@ export class SocketGateway {
 
             // Python 스크립트 실행
             PythonShell.run('Demo/test.py', options).then(messages => console.log(messages))
+
+            PythonShell.run('Demo/test.py', options).then(message => {
+                const output = JSON.parse(message[0]); // Python 출력 파싱
+                this.dataList.push(output); // 리스트에 데이터 추가
+                // 프론트엔드에 데이터 전송
+                this.server.emit('streamData', output);
+            });
+
+
         }
     }
-
 }
-
-
-
-

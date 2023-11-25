@@ -1,13 +1,25 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { join } from 'path';
+import * as fs from 'fs';
+import * as https from 'https';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { Express } from 'express';
 import * as path from 'path'; // Import the path module
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  const httpsOptions = {
+    key: fs.readFileSync('/etc/letsencrypt/live/devy.me/prikey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/devy.me/cert.pem'),
+  };
+
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    httpsOptions,
+  });
+
+
 
   app.enableCors({
     origin: '*',
