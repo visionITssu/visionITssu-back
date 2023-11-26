@@ -12,7 +12,7 @@ async function bootstrap() {
 
   const httpsOptions = {
     key: fs.readFileSync('/etc/letsencrypt/live/devy.me/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/devy.me/cert.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/devy.me/fullchain.pem'),
   };
 
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
