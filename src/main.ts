@@ -15,7 +15,7 @@ async function bootstrap() {
     cert: fs.readFileSync('cert/cert.pem'),
   };
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    httpsOptions,
+    // httpsOptions,
   });
   app.enableCors({
     origin: '*',
@@ -30,7 +30,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  //await app.listen(5000, '0.0.0.0', () => { });
-  await app.listen(443);
+  await app.listen(5002, '0.0.0.0', () => { });
+  //await app.listen(443);
 }
 bootstrap();

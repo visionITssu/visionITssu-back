@@ -5,10 +5,10 @@ import { CameraModule } from './camera/camera.module';
 import { PhotoUploadModule } from './photo-upload/photo-upload.module';
 import { CalculateModule } from './calculate/calculate.module';
 import { PhotoEditModule } from './photo-edit/photo-edit.module';
-import { VerificationModule } from './verification/verification.module';
 import { PhotoDownloadModule } from './photo-download/photo-download.module';
 import { ExampleModule } from './example/example.module';
 import { SocketModule } from './socket/socket.module';
+import { VerificationModule } from './photo-verification/photo-verification.module';
 
 
 @Module({

@@ -118,11 +118,19 @@ def check_expression(image):
                 return 0
     
 
-predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
+predictor = dlib.shape_predictor("/Users/byeon-eun-yeong/Desktop/visionITssu-back/Demo/shape_predictor_68_face_landmarks.dat")
 detector = dlib.get_frontal_face_detector()
 
+file_path = sys.argv[1]
+
+# 파일에서 base64 인코딩된 데이터 읽기
+with open(file_path, 'r') as file:
+    base64_data = file.read()
+
+# base64 데이터 디코딩
+img_data = base64.b64decode(base64_data)
 #REAL CODE
-img_data = base64.b64decode(sys.argv[1])
+# img_data = base64.b64decode(sys.argv[1])
 nparr = np.frombuffer(img_data, np.uint8)
 image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
@@ -132,7 +140,7 @@ if image is None:
     print('Image is Empty!')
     exit()
 
-print("image 생성완료")
+#print("image 생성완료")
 result=check_frontal(image), check_bright(image), check_expression(image)
 
 print(result)
