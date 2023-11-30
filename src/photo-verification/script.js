@@ -9,7 +9,8 @@ document.getElementById('imageUpload').addEventListener('change', function (even
         formData.append('image', imgBlob);
 
         // Fetch API to send the image blob to the server
-        fetch('http://localhost:5002/verification', {
+        // fetch('http://localhost:5002/verification', {
+        fetch('https://devy.me/verification', {
             method: 'POST',
             body: formData
         })
