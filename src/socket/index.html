@@ -14,7 +14,7 @@
   <button id="startStream">Start Stream</button>
 
   <script>
-    const socket = io('http://localhost:5002');
+    const socket = io('http://localhost:5003/socket');
     const video = document.getElementById('webcam');
 
     socket.on('connect', function () {
@@ -29,13 +29,17 @@
               // 10초마다 현재 비디오 프레임을 서버로 전송
               setInterval(() => {
                 captureAndSendFrame();
-              }, 10000); // 10초마다 실행
+              }, 1700); // 10초마다 실행
             })
             .catch(err => {
               console.error('Error accessing media devices:', err);
             });
         }
       });
+    });
+
+    socket.on('stream', (data) => {
+      console.log('Data received:', data);
     });
 
     socket.on('disconnect', function () {
@@ -49,9 +53,8 @@
       const ctx = canvas.getContext('2d');
 
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      canvas.toBlob(blob => {
-        socket.emit('stream', blob);
-      });
+      const imageData = canvas.toDataURL('image/jpeg');
+      socket.emit('stream', { image: imageData });
     }
   </script>
 </body>

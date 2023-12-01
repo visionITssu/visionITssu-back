@@ -41,6 +41,8 @@ def check_frontal_horizontal(gray):
                 return 1
             else:
                 return 0
+    else:
+        return 0
 
 def check_frontal_vertical(gray):  
     rects = detector(gray, 0)  # 얼굴 개수
@@ -79,6 +81,8 @@ def check_frontal_vertical(gray):
                 return 1
             else:
                 return 0
+    else: 
+        return 0 
 
 def check_frontal(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -101,7 +105,9 @@ def check_bright(image):
                 return 1
             else:
                 return 0
-    
+    else:
+        return 0
+
 def check_expression(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     rects = detector(gray, 0)  # 얼굴 개수
@@ -116,7 +122,8 @@ def check_expression(image):
                 return 1
             else:
                 return 0
-    
+    else: 
+        return 0
 
 predictor = dlib.shape_predictor("/Users/byeon-eun-yeong/Desktop/visionITssu-back/Demo/shape_predictor_68_face_landmarks.dat")
 detector = dlib.get_frontal_face_detector()

@@ -10,7 +10,7 @@ document.getElementById('imageUpload').addEventListener('change', function (even
 
         // Fetch API to send the image blob to the server
         // fetch('http://localhost:5002/verification', {
-        fetch('https://devy.me/verification', {
+        fetch('http://localhost:5002/verification', {
             method: 'POST',
             body: formData
         })

@@ -11,11 +11,12 @@ import * as path from 'path'; // Import the path module
 async function bootstrap() {
 
   const httpsOptions = {
-    key: fs.readFileSync('cert/privkey.pem'),
-    cert: fs.readFileSync('cert/cert.pem'),
+    key: fs.readFileSync('/Users/byeon-eun-yeong/Desktop/visionITssu-back/_wildcard.devy.me+3-key.pem'),
+    cert: fs.readFileSync('/Users/byeon-eun-yeong/Desktop/visionITssu-back/_wildcard.devy.me+3.pem'),
   };
+
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    // httpsOptions,
+    httpsOptions,
   });
   app.enableCors({
     origin: '*',
@@ -30,7 +31,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  await app.listen(5002, '0.0.0.0', () => { });
+  await app.listen(443, '0.0.0.0', () => { });
   //await app.listen(443);
 }
 bootstrap();
