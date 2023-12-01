@@ -30,7 +30,7 @@ export class PhotoEditService {
       console.error('Error in VerificationService:', error);
       throw error;
     } finally {
-      //await fs.unlink(tempFilePath);
+      await fs.unlink(tempFilePath);
     }
   }
 
