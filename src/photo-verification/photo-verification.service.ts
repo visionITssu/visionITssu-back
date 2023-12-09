@@ -19,7 +19,7 @@ export class VerificationService {
 
     async loadModel() {
         try {
-            const modelPath = path.join(process.cwd(), "model", "model.json");
+            const modelPath = path.join(process.cwd(), "best_web_model", "model.json");
             this.model = await tf.loadGraphModel(`file://${modelPath}`);
         } catch (error) {
             console.error("Error loading the model", error);
