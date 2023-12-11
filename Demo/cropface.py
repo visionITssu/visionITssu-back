@@ -6,15 +6,18 @@ import sys
 from datetime import datetime
 
 
-predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
+predictor = dlib.shape_predictor("/Users/stanhong/school/visionITssu-back/Demo/shape_predictor_68_face_landmarks.dat")
 detector = dlib.get_frontal_face_detector()
 
-#REAL CODE
-# img_data = base64.b64decode(sys.argv[1])
-# nparr = np.frombuffer(img_data, np.uint8)
-# image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+file_path = sys.argv[1]
 
-image = cv2.imread(str(sys.argv[1])) #TEST CODE
+with open(file_path, 'r') as file:
+    base64_data = file.read()
+
+img_data = base64.b64decode(base64_data)
+nparr = np.frombuffer(img_data, np.uint8)
+image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
 
 if image is None:
     print('Image is Empty!')
@@ -47,7 +50,7 @@ if len(rects) > 0:
     center_y = int(gy_in)
     crop = image[center_y - 170:center_y + 170, center_x - 132:center_x + 132]
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"image_{timestamp}.png"
+    filename = f"temp.png"
     cv2.imwrite(filename, crop)
 else:
     print('no')
