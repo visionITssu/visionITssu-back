@@ -4,20 +4,35 @@ import numpy as np
 import base64
 import sys
 from datetime import datetime
+from PIL import Image,ImageFile
+from rembg import remove
+
+def show_rembg(cv_img):
+    color_coverted = cv2.cvtColor(cv_img, cv2.COLOR_BGR2RGB)
+    pil_image=Image.fromarray(color_coverted)
+    output = remove(pil_image)
+    img = output.convert("RGBA")
+
+    # 새로운 흰색 배경 이미지 생성
+    white_bg = Image.new("RGBA", img.size, "WHITE")
+    white_bg.paste(img, (0, 0), img)
+    # use numpy to convert the pil_image into a numpy array
+    numpy_image=np.array(white_bg)  
+    # convert to a openCV2 image and convert from RGB to BGR format
+    opencv_image=cv2.cvtColor(numpy_image, cv2.COLOR_RGB2BGR)
+    #display image to GUI
+    return opencv_image
 
 
-predictor = dlib.shape_predictor("/Users/stanhong/school/visionITssu-back/Demo/shape_predictor_68_face_landmarks.dat")
+predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 detector = dlib.get_frontal_face_detector()
 
-file_path = sys.argv[1]
+#REAL CODE
+# img_data = base64.b64decode(sys.argv[1])
+# nparr = np.frombuffer(img_data, np.uint8)
+# image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-with open(file_path, 'r') as file:
-    base64_data = file.read()
-
-img_data = base64.b64decode(base64_data)
-nparr = np.frombuffer(img_data, np.uint8)
-image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-
+image = cv2.imread(str(sys.argv[1])) #TEST CODE
 
 if image is None:
     print('Image is Empty!')
@@ -49,8 +64,11 @@ if len(rects) > 0:
     center_x = int(gx_in)
     center_y = int(gy_in)
     crop = image[center_y - 170:center_y + 170, center_x - 132:center_x + 132]
+    dst = show_rembg(crop)
+    result = cv2.resize(dst, dsize=(413, 531), interpolation=cv2.INTER_LANCZOS4)
+    #timestamp지워도 상관없음, 파일 저장하는 부분
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"temp.png"
-    cv2.imwrite(filename, crop)
+    filename = f"image_{timestamp}.jpg"
+    cv2.imwrite(filename, result)
 else:
     print('no')
