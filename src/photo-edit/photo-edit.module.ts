@@ -4,6 +4,6 @@ import { PhotoEditController } from './photo-edit.controller';
 
 @Module({
   providers: [PhotoEditService],
-  controllers: [PhotoEditController]
+  controllers: [PhotoEditController],
 })
 export class PhotoEditModule {}
