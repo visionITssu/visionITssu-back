@@ -24,7 +24,7 @@ def show_rembg(cv_img):
     return opencv_image
 
 
-predictor = dlib.shape_predictor("/Users/stanhong/school/visionITssu-back/Demo/shape_predictor_68_face_landmarks.dat")
+predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 detector = dlib.get_frontal_face_detector()
 file_path = sys.argv[1]
 
@@ -35,6 +35,7 @@ img_data = base64.b64decode(base64_data)
 nparr = np.frombuffer(img_data, np.uint8)
 image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
+image = cv2.imread(str(sys.argv[1])) #TEST CODE
 
 if image is None:
     print('Image is Empty!')

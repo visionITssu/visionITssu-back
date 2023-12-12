@@ -5,6 +5,7 @@ import base64
 import sys
 
 
+
 def check_frontal_horizontal(gray):  
     rects = detector(gray, 0)  # 얼굴 개수
 
@@ -37,6 +38,7 @@ def check_frontal_horizontal(gray):
             # 얼굴 방향 계산
             theta = math.asin(2 * (gx_in - gx_out) / (rect.right() - rect.left()))
             radian = theta * 180 / math.pi
+            threshold = 1.3
             threshold = 1.3
             if radian < threshold and radian > -threshold:
                 return 1
@@ -78,6 +80,7 @@ def check_frontal_vertical(gray):
             theta = math.asin(2 * (gx_in - gx_out) / (rect.top() - rect.bottom()))
             radian = theta * 180 / math.pi
             threshold = 1.5
+            if radian < threshold and radian > -threshold:
             if radian < threshold and radian > -threshold:
                 return 1
             else:
