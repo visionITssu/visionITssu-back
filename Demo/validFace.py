@@ -81,7 +81,6 @@ def check_frontal_vertical(gray):
             radian = theta * 180 / math.pi
             threshold = 1.5
             if radian < threshold and radian > -threshold:
-            if radian < threshold and radian > -threshold:
                 return 1
             else:
                 return 0
